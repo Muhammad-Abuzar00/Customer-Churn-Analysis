@@ -117,9 +117,11 @@ def churn_bar(df, col, title, ax=None, overall=None, xlabel="Churn rate"):
     colors = [ORANGE if r > overall else BLUE for r in tbl["churn_rate"]]
     ax.barh(tbl.index.astype(str), tbl["churn_rate"], color=colors, height=0.6)
     ax.axvline(overall, color=GREY, ls="--", lw=1.2)
-    ax.text(overall, len(tbl) - 0.35, f" avg {overall:.1%}", color=GREY, fontsize=9, va="bottom")
+    ax.set_ylim(-0.6, len(tbl) - 0.05)
+    ax.text(overall, len(tbl) - 0.4, f" overall avg {overall:.1%}", color=GREY, fontsize=9, va="center")
     for i, (rate, n) in enumerate(zip(tbl["churn_rate"], tbl["customers"])):
-        ax.text(rate + 0.006, i, f"{rate:.1%}  (n={n:,})", va="center", fontsize=9, color=INK)
+        ax.text(rate + 0.006, i, f"{rate:.1%}  (n={n:,})", va="center", fontsize=9, color=INK,
+                bbox=dict(facecolor="white", edgecolor="none", pad=1, alpha=0.85))
     ax.set_xlim(0, max(tbl["churn_rate"].max() * 1.3, overall * 1.3))
     pct_axis(ax, "x")
     ax.set_xlabel(xlabel)
