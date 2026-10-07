@@ -62,6 +62,7 @@ def set_theme():
             "text.color": INK,
             "font.family": "DejaVu Sans",
             "legend.frameon": False,
+            "text.parse_math": False,  # show "$" literally in titles and labels
         },
     )
     sns.set_palette([BLUE, ORANGE, AQUA, "#eda100", "#e87ba4", "#008300", "#4a3aa7", "#e34948"])
